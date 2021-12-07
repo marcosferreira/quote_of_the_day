@@ -17,11 +17,18 @@ class _HomeScreenState extends State<HomeScreen> {
     'Não importa a situação, mantenha a calma!',
     'Agradeça a Deus por mais um dia, pois Ele é bom.'
   ];
+  Random random = Random();
+
+
+  @override
+  void initState(){
+    super.initState();
+    fraseDay = frase[random.nextInt(frase.length)];
+  }
 
   String fraseDay = '';
 
   void _randomFrase() {
-    Random random = Random();
 
     setState(() {
       fraseDay = frase[random.nextInt(frase.length)];
