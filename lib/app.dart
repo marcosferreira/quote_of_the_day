@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         foregroundColor: Colors.purple,
       ),
       scaffoldBackgroundColor: Colors.purple,
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         bodyText1: TextStyle(
           color: Colors.white,
         ),

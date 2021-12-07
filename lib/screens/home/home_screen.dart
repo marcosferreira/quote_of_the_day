@@ -11,28 +11,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Random random = Random();
+  String fraseDay = '';
   final List<String> frase = [
+    'Agradeça a Deus por mais um dia, pois Ele é bom.'
     'Pense sempre positivo.',
     'Seja bom o tempo todo.',
     'Não importa a situação, mantenha a calma!',
-    'Agradeça a Deus por mais um dia, pois Ele é bom.'
+    'Somos todos fruto do meio, o importante é não sucumbir aos erros.',
+    'Você é mais forte do que pensa.',
+    'O dia hoje será produtivo 🙌',
+    'Estudar nem sempre é divertido, mas no final nos leva longe.',
+    'Foco e fé são os princípios do sucesso.',
+    'Tudo que você precisar, peça a Deus e tenha paciência.',
+    'Nunca desista, pois uma vez desistido sempre terá a próxima.',
+    'Acredite em você mesmo antes de colocar sua fé em outra pessoa.',
+    'Família é tudo!'
   ];
-  Random random = Random();
-
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     fraseDay = frase[random.nextInt(frase.length)];
-  }
-
-  String fraseDay = '';
-
-  void _randomFrase() {
-
-    setState(() {
-      fraseDay = frase[random.nextInt(frase.length)];
-    });
   }
 
   @override
@@ -55,29 +55,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Text('A frase do dia para hoje é:',
                       style: Theme.of(context).textTheme.bodyText1),
               const SizedBox(height: 60),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 32,
-                  ),
-                  child: Text(
-                    fraseDay,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-              ),
+              buildCard(context),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _randomFrase();
-        },
-        child: const Icon(Icons.rotate_right_outlined),
+      floatingActionButton: buildFloatingActionButton(),
+    );
+  }
+
+  Card buildCard(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 32,
+        ),
+        child: Text(
+          fraseDay,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline5,
+        ),
       ),
+    );
+  }
+
+  FloatingActionButton buildFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          fraseDay = frase[random.nextInt(frase.length)];
+        });
+      },
+      child: const Icon(Icons.rotate_right_outlined),
     );
   }
 }
